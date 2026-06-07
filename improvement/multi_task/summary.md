@@ -6,6 +6,16 @@ On the five selected unseen/test clips, the baseline generalist mean F1 is `0.61
 
 ## Additional compared methods on the same five clips
 
+### `04_goal_representation`
+
+This method fine-tunes the low-level diffusion policy with an expanded goal side-channel representation.
+
+- baseline mean F1: `0.615026`
+- improved mean F1: `0.623506`
+- delta: `+0.008480`
+
+It improves the average F1 on the selected five-clip benchmark, with the largest gain on `EyesClosed_1`.
+
 ### `01_official_reward_select_013`
 
 This method keeps the original PianoMime checkpoints but evaluates multiple low-level seeds and selects the best rollout by reward.
@@ -38,4 +48,4 @@ It improves only `Hope_1` and degrades the other four selected clips.
 
 ## Practical conclusion
 
-Among the currently compared methods for the five selected test clips, `01_smooth_diffusion_objective` remains the strongest average improvement. `official_reward_select_013` is a modest but still positive test-time improvement. The A+C recovery and RP1M low-level replacement are not effective on this five-clip benchmark slice.
+Among the currently compared methods for the five selected test clips, `01_smooth_diffusion_objective` remains the strongest average improvement. `04_goal_representation` is the second strongest average improvement and is especially helpful on `EyesClosed_1`. `official_reward_select_013` is a modest but still positive test-time improvement. The A+C recovery and RP1M low-level replacement are not effective on this five-clip benchmark slice.

@@ -1,0 +1,2 @@
+method,num_clips,precision,recall,f1,baseline_f1,delta_f1,notes
+Goal side-channel representation,5,0.706399,0.625367,0.623506,0.615026,0.008480,goal side-channel representation

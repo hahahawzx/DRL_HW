@@ -1,0 +1,6 @@
+song_or_clip,split,seed,method,precision,recall,f1,notes
+Alone_1,test,42,Goal side-channel representation,0.735194,0.600198,0.594300,low-level diffusion fine-tuned with additional goal side-channel conditioning
+EyesClosed_1,test,43,Goal side-channel representation,0.586889,0.508250,0.501612,low-level diffusion fine-tuned with additional goal side-channel conditioning
+Hope_1,test,44,Goal side-channel representation,0.732437,0.636357,0.647655,low-level diffusion fine-tuned with additional goal side-channel conditioning
+SomewhereOnlyWeKnow_1,test,45,Goal side-channel representation,0.666087,0.576556,0.588117,low-level diffusion fine-tuned with additional goal side-channel conditioning
+NoTimeToDie_1,test,46,Goal side-channel representation,0.811389,0.805472,0.785846,low-level diffusion fine-tuned with additional goal side-channel conditioning
