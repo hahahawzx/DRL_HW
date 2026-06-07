@@ -1,0 +1,6 @@
+song_or_clip,split,seed,method,precision,recall,f1,notes
+Alone_1,test,3,rp1m_pointmajor_linearq_seed3,0.736722,0.564913,0.575080,"RP1M low-level checkpoint with point-major demo + linear q mapping"
+EyesClosed_1,test,3,rp1m_pointmajor_linearq_seed3,0.526250,0.427444,0.427680,"RP1M low-level checkpoint with point-major demo + linear q mapping"
+Hope_1,test,3,rp1m_pointmajor_linearq_seed3,0.740083,0.624815,0.649015,"RP1M low-level checkpoint with point-major demo + linear q mapping"
+SomewhereOnlyWeKnow_1,test,3,rp1m_pointmajor_linearq_seed3,0.618310,0.557722,0.559215,"RP1M low-level checkpoint with point-major demo + linear q mapping"
+NoTimeToDie_1,test,3,rp1m_pointmajor_linearq_seed3,0.784139,0.792306,0.767059,"RP1M low-level checkpoint with point-major demo + linear q mapping"

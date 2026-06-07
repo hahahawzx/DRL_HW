@@ -1,0 +1,6 @@
+song_or_clip,split,seed,method,precision,recall,f1,notes
+Alone_1,test,0,ac_recover100_teacher0005_seed0,0.781667,0.600738,0.602419,"A+C two-stage recovery with teacher regularization"
+EyesClosed_1,test,0,ac_recover100_teacher0005_seed0,0.550667,0.453139,0.458258,"A+C two-stage recovery with teacher regularization"
+Hope_1,test,0,ac_recover100_teacher0005_seed0,0.746405,0.614802,0.639243,"A+C two-stage recovery with teacher regularization"
+SomewhereOnlyWeKnow_1,test,0,ac_recover100_teacher0005_seed0,0.634083,0.548028,0.562920,"A+C two-stage recovery with teacher regularization"
+NoTimeToDie_1,test,0,ac_recover100_teacher0005_seed0,0.812619,0.797000,0.784264,"A+C two-stage recovery with teacher regularization"

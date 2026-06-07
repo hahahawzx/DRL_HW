@@ -1,0 +1,6 @@
+song_or_clip,split,seed,method,precision,recall,f1,notes
+Alone_1,test,"0,1,3",official_reward_select_013,0.805333,0.616675,0.620531,"official low-level checkpoint; select best among seeds 0/1/3 by reward"
+EyesClosed_1,test,"0,1,3",official_reward_select_013,0.545306,0.460389,0.463362,"official low-level checkpoint; select best among seeds 0/1/3 by reward"
+Hope_1,test,"0,1,3",official_reward_select_013,0.745969,0.624734,0.651327,"official low-level checkpoint; select best among seeds 0/1/3 by reward"
+SomewhereOnlyWeKnow_1,test,"0,1,3",official_reward_select_013,0.646940,0.566611,0.577806,"official low-level checkpoint; select best among seeds 0/1/3 by reward"
+NoTimeToDie_1,test,"0,1,3",official_reward_select_013,0.814937,0.797639,0.784885,"official low-level checkpoint; select best among seeds 0/1/3 by reward"

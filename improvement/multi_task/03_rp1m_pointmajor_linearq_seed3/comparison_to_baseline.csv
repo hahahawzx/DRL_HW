@@ -1,0 +1,6 @@
+song_or_clip,baseline_f1,improved_f1,delta_f1,notes
+Alone_1,0.606676,0.575080,-0.031596,"degraded"
+EyesClosed_1,0.445271,0.427680,-0.017591,"degraded"
+Hope_1,0.638330,0.649015,0.010685,"improved"
+SomewhereOnlyWeKnow_1,0.608451,0.559215,-0.049236,"degraded"
+NoTimeToDie_1,0.776401,0.767059,-0.009342,"degraded"
