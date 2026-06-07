@@ -1,6 +1,2 @@
 method,song_or_clip,precision,recall,f1,baseline_f1,delta_f1,outcome,notes
-01_residual_factor_calibration,Happy_8,0.814019,0.558166,0.573780,0.559539,0.014241,diagnostic,residual factor calibration improves the short PPO baseline slightly
-02_continue_original_reward_control,Happy_8,0.838281,0.548723,0.570456,0.559539,0.010917,control,extra PPO updates with the original reward give only a small gain
-03_heavy_smoothness_penalty_failed,Happy_8,0.798698,0.522489,0.543064,0.559539,-0.016476,failed,heavy smoothness penalties reduce recall and hurt F1
-04_light_smooth_onset,Happy_8,0.852604,0.567411,0.582861,0.559539,0.023322,intermediate,light smoothness plus onset reward improves over the short PPO baseline
-05_light_smooth_onset_residual_calibration,Happy_8,1.000000,0.889484,0.918715,0.872450,0.046265,final,final selected single-task method
+light_smooth_onset_residual_calibration,Happy_8,1.000000,0.889484,0.918715,0.872450,0.046265,final,"combined single-task improvement: onset-aware reward, light smoothness regularization, and residual factor calibration"

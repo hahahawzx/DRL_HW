@@ -1,10 +1,14 @@
-# Single-task Improvement Summary
+# Combined Single-task Improvement
 
-The single-task improvement is evaluated on `Happy_8`. We treat the final result as one combined method rather than several independent optimizations.
+## Setting
+
+- Task: single-task specialist policy
+- Clip: `Happy_8`
+- Outcome: final selected single-task method
 
 ## Method
 
-The final method combines three changes:
+This is the only retained single-task improvement. It combines three changes:
 
 - Onset-aware reward: add extra reward on frames where a note first needs to be pressed. This makes the policy pay more attention to note-onset timing, reducing delayed key presses and missed notes. The main expected F1 benefit is higher recall.
 - Light smoothness regularization: add small penalties for abrupt residual/action changes, including residual magnitude penalty, residual delta penalty, action smoothness penalty, and qvel/qacc-style penalties. The coefficients are intentionally small to reduce finger jitter and unnatural large motions without making the policy too conservative.
@@ -12,8 +16,11 @@ The final method combines three changes:
 
 ## Result
 
-| Clip | Precision | Recall | F1 | Baseline F1 | Delta F1 |
-|---|---:|---:|---:|---:|---:|
-| `Happy_8` | `1.000000` | `0.889484` | `0.918715` | `0.872450` | `+0.046265` |
+```text
+precision = 1.000000
+recall    = 0.889484
+f1        = 0.918715
+delta_f1  = +0.046265
+```
 
-The final single-task F1 is `0.9187`.
+The final single-task F1 is `0.9187`. It improves over the released `Happy_8` single-song rollout baseline while keeping precision at `1.000000`.

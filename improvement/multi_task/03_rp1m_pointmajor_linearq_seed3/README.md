@@ -1,34 +1,57 @@
-# RP1M Low-level Replacement
+# RP1M Low-level Integration
 
 ## What changed
 
-This method replaces the original low-level checkpoint with the RP1M-derived low-level checkpoint using point-major fingertip conversion and learned linear action-to-q mapping.
+This experiment replaces the official PianoMime low-level checkpoint with an RP1M-derived low-level diffusion policy.
 
-## Why it may help
+The important part is representation alignment. Direct RP1M conversion is unreliable, so the retained variant uses:
 
-RP1M may provide broader state-space coverage for low-level control and improve generalization to unseen clips.
+- point-major fingertip demo conversion, aligning RP1M fingertip order with PianoMime-style low-level demo features;
+- learned linear mapping from RP1M `action46` to PianoMime-style `q_hand54`, fitted from the original `dataset_ll.zarr`;
+- fine-tuning from the official PianoMime low-level checkpoint.
 
-## Setting
+## Motivation
 
-- multi-task / generalist
-- seed: `3`
-- test clips:
-  - `Alone_1`
-  - `EyesClosed_1`
-  - `Hope_1`
-  - `SomewhereOnlyWeKnow_1`
-  - `NoTimeToDie_1`
+PianoMime's official low-level model may not cover enough state-action variation for unseen songs. RP1M provides much broader piano-playing trajectories, so the goal is to use RP1M to improve low-level generalization. The key challenge is that RP1M and PianoMime do not use exactly the same low-level observation/action schema.
 
-## Main quantitative result
+## Broader evaluation findings
 
-This method is not effective on the selected five-song evaluation subset.
+Direct or weakly aligned RP1M conversion is not enough:
 
-Mean F1 over the five clips:
+```text
+RP1M-only manual-q conversion: poor recall under RP1M stats
+mixed original + RP1M manual-q: unstable
+point-major demo + manual q: close to baseline but not clearly better
+```
 
-- baseline: `0.615026`
-- improved: `0.595610`
-- delta: `-0.019416`
+The best RP1M variant uses point-major demo conversion plus learned linear-q mapping:
+
+```text
+Forester_1 official baseline F1 = 0.6731
+RP1M point-major + linear-q, seed3 F1 = 0.6986
+delta F1 = +0.0254
+```
+
+## Five-clip result in this folder
+
+The reader-facing five-clip benchmark uses:
+
+```text
+Alone_1
+EyesClosed_1
+Hope_1
+SomewhereOnlyWeKnow_1
+NoTimeToDie_1
+```
+
+Result:
+
+```text
+baseline mean F1 = 0.615026
+improved mean F1 = 0.595610
+delta F1        = -0.019416
+```
 
 ## Conclusion
 
-The RP1M low-level model helps on `Hope_1`, but degrades the other four selected clips. It is therefore not a good final method for this five-song benchmark slice.
+RP1M integration is promising only after schema alignment. It gives the strongest observed Forester_1 single unseen result, but it does not generalize reliably across the selected five-clip benchmark. The report should avoid saying that RP1M directly improves the generalist policy; the accurate claim is that learned representation alignment makes RP1M useful in some settings.

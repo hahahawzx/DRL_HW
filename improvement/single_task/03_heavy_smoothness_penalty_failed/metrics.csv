@@ -1,2 +1,0 @@
-song_or_clip,split,seed,method,precision,recall,f1,outcome,notes
-Happy_8,train,42,Heavy smoothness penalty,0.798698,0.522489,0.543064,failed,heavy smoothness penalties reduce recall and hurt F1
