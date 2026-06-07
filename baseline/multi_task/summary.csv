@@ -1,0 +1,2 @@
+setting,num_clips,precision,recall,f1,notes
+multi_task_generalist_baseline,5,0.699959,0.615592,0.615026,mean over selected test clips

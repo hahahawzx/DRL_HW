@@ -1,0 +1,6 @@
+song_or_clip,split,seed,method,precision,recall,f1,notes
+Alone_1,test,42,PianoMime generalist baseline,0.744639,0.604385,0.606676,original low-level diffusion checkpoint
+EyesClosed_1,test,43,PianoMime generalist baseline,0.561528,0.449083,0.445271,original low-level diffusion checkpoint
+Hope_1,test,44,PianoMime generalist baseline,0.709509,0.626018,0.638330,original low-level diffusion checkpoint
+SomewhereOnlyWeKnow_1,test,45,PianoMime generalist baseline,0.683397,0.601222,0.608451,original low-level diffusion checkpoint
+NoTimeToDie_1,test,46,PianoMime generalist baseline,0.800722,0.797250,0.776401,original low-level diffusion checkpoint

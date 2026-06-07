@@ -16,12 +16,8 @@ course_project_results/
   baseline/
     single_task/
       song_name/
-        README.md
-        metrics.csv
         training_curve_f1.png
         final_video.mp4
-        run_config.md
-      summary.csv
 
     multi_task/
       baseline_generalist/
@@ -38,8 +34,6 @@ course_project_results/
       01_method_name/
       02_method_name/
       combined_optimization/
-      summary.md
-      summary.csv
 
     multi_task/
       00_baseline/
@@ -52,7 +46,7 @@ course_project_results/
 
 ## Baseline Results
 
-`baseline/single_task/` contains the original PianoMime single-song policy results for three training songs, including final metrics, F1 training curves, and performance videos.
+`baseline/single_task/` contains the original PianoMime single-song policy results for three training clips. Each clip folder keeps only the F1 training curve and the final performance video.
 
 `baseline/multi_task/` contains the original PianoMime generalist policy results on unseen/test songs, including per-song metrics and selected videos.
 
@@ -63,12 +57,12 @@ All selected pieces are clips rather than full songs.
 Single-task baseline clips from `dataset/notes/`:
 
 ```text
-Hello_8
-Arcade_1
-LetMeDownSlowly_1
+Happy_8
+ImagineDragons_6
+LetMeDownSlowly_6
 ```
 
-`Hello_8` is relatively difficult and is also used as the fixed single-task comparison clip for later improvements.
+`Happy_8` is relatively difficult and is also used as the fixed single-task comparison clip for later improvements.
 
 Multi-task/generalist evaluation clips from `dataset/notes_test/`:
 
@@ -84,7 +78,14 @@ The same five test clips are used for the baseline generalist policy and all mul
 
 ## Improvement Results
 
-The improvement section is organized by method rather than by song. For both `improvement/single_task/` and `improvement/multi_task/`:
+The improvement section is organized by method rather than by song.
+
+For `improvement/single_task/`, each method folder keeps only:
+
+- `training_curve_f1.png`
+- `final_video.mp4`
+
+For `improvement/multi_task/`:
 
 - `00_baseline/` stores the fixed baseline used for comparison.
 - `01_method_name/`, `02_method_name/`, etc. store individual optimization attempts.
@@ -92,30 +93,26 @@ The improvement section is organized by method rather than by song. For both `im
 - `summary.md` gives the human-readable conclusion.
 - `summary.csv` gives the compact quantitative comparison.
 
-Each method folder uses the following compact format:
+Single-task baseline and improvement folders use the following compact format:
 
 ```text
-README.md
-metrics.csv
-comparison_to_baseline.csv
-figures/
-videos/
-run_config.md
+training_curve_f1.png
+final_video.mp4
 ```
 
-For single-task methods, `training_curve_f1.png` and `final_video.mp4` are included when available.
+For single-task methods, the curve and video are the required reader-facing artifacts.
 
 For multi-task methods, all methods are evaluated on the same five unseen/test songs so that the baseline and improved F1 scores are directly comparable.
 
 ## Table Format
 
-`metrics.csv` contains raw evaluation results:
+Multi-task `metrics.csv` contains raw evaluation results:
 
 ```text
 song_or_clip, split, seed, method, precision, recall, f1, notes
 ```
 
-`comparison_to_baseline.csv` contains baseline-vs-method results:
+Multi-task `comparison_to_baseline.csv` contains baseline-vs-method results:
 
 ```text
 song_or_clip,
@@ -129,14 +126,15 @@ notes
 
 The result folders mainly contain:
 
-- CSV tables for Precision, Recall, and F1.
-- Figures for training curves and method comparisons.
+- F1 training curves and final performance videos for single-task policies.
+- CSV tables for Precision, Recall, and F1 in multi-task/generalist experiments.
+- Figures for multi-task method comparisons.
 - MP4 videos for qualitative performance comparison.
-- Short notes describing the method, evaluation setting, and selected checkpoint.
+- Short notes describing the multi-task method, evaluation setting, and selected checkpoint.
 
 ## Method README
 
-Each optimization folder uses a single `README.md` to describe the method. It should explain:
+Multi-task optimization folders may use a single `README.md` to describe the method. It should explain:
 
 - What the method changes compared with the baseline.
 - Why this change may improve the policy.
@@ -145,4 +143,4 @@ Each optimization folder uses a single `README.md` to describe the method. It sh
 - The main quantitative result.
 - The final conclusion for this method.
 
-`run_config.md` is only for compact reproducibility details such as seed, checkpoint name, and evaluation command.
+`run_config.md` is only used when compact reproducibility details are needed, such as seed, checkpoint name, and evaluation command.
