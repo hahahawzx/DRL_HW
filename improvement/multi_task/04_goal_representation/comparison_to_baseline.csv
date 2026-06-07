@@ -1,6 +1,6 @@
-song_or_clip,baseline_f1,improved_f1,delta_f1,baseline_precision,improved_precision,baseline_recall,improved_recall
-Alone_1,0.606676,0.594300,-0.012376,0.744639,0.735194,0.604385,0.600198
-EyesClosed_1,0.445271,0.501612,0.056341,0.561528,0.586889,0.449083,0.508250
-Hope_1,0.638330,0.647655,0.009325,0.709509,0.732437,0.626018,0.636357
-SomewhereOnlyWeKnow_1,0.608451,0.588117,-0.020334,0.683397,0.666087,0.601222,0.576556
-NoTimeToDie_1,0.776401,0.785846,0.009445,0.800722,0.811389,0.797250,0.805472
+song_or_clip,baseline_f1,improved_f1,delta_f1,notes
+Alone_1,0.606676,0.594300,-0.012376,worse than baseline
+EyesClosed_1,0.445271,0.501612,0.056341,improved over baseline
+Hope_1,0.638330,0.647655,0.009325,improved over baseline
+SomewhereOnlyWeKnow_1,0.608451,0.588117,-0.020334,worse than baseline
+NoTimeToDie_1,0.776401,0.785846,0.009445,improved over baseline

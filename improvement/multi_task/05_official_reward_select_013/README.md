@@ -1,4 +1,4 @@
-# 01 official_reward_select_013
+# 05 official_reward_select_013
 
 ## What changed
 
@@ -30,4 +30,4 @@ Mean F1 over the five clips:
 
 ## Conclusion
 
-This is the most effective method among the currently available multi-task improvements for these five clips. The gain is modest but relatively stable.
+This method provides a modest positive test-time improvement on this five-clip benchmark, but it is not the strongest multi-task improvement among the compared methods.

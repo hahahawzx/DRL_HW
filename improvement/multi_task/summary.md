@@ -1,51 +1,64 @@
 # Multi-task Improvement Summary
 
-`01_smooth_diffusion_objective` fine-tunes the low-level diffusion policy with denoised action derivative matching.
+All multi-task methods are evaluated on the same five unseen/test clips:
 
-On the five selected unseen/test clips, the baseline generalist mean F1 is `0.615026` and this method reaches `0.625574`, for a delta of `+0.010548`.
+```text
+Alone_1
+EyesClosed_1
+Hope_1
+SomewhereOnlyWeKnow_1
+NoTimeToDie_1
+```
 
-## Additional compared methods on the same five clips
+The baseline generalist mean F1 on these clips is `0.615026`.
 
-### `04_goal_representation`
+## Compared Methods
 
-This method fine-tunes the low-level diffusion policy with an expanded goal side-channel representation.
+### `01_smooth_diffusion_objective`
 
-- baseline mean F1: `0.615026`
-- improved mean F1: `0.623506`
-- delta: `+0.008480`
+Fine-tunes the low-level diffusion policy with denoised action derivative matching.
 
-It improves the average F1 on the selected five-clip benchmark, with the largest gain on `EyesClosed_1`.
+- mean F1: `0.625574`
+- delta F1: `+0.010548`
 
-### `01_official_reward_select_013`
-
-This method keeps the original PianoMime checkpoints but evaluates multiple low-level seeds and selects the best rollout by reward.
-
-- baseline mean F1: `0.615026`
-- improved mean F1: `0.619582`
-- delta: `+0.004556`
-
-It improves 4 of the 5 selected clips, but still loses on `SomewhereOnlyWeKnow_1`.
+This is the strongest average improvement among the currently collected multi-task methods.
 
 ### `02_ac_recover100_teacher0005_seed0`
 
-This is the A+C two-stage recovery method with teacher regularization.
+Uses an A+C two-stage recovery method with teacher regularization.
 
-- baseline mean F1: `0.615026`
-- improved mean F1: `0.609421`
-- delta: `-0.005605`
+- mean F1: `0.609421`
+- delta F1: `-0.005605`
 
-It helps on some clips but is not a stable improvement on the selected five-song subset.
+This method is not a stable improvement on the selected five-clip benchmark.
 
 ### `03_rp1m_pointmajor_linearq_seed3`
 
-This method replaces the official low-level checkpoint with the RP1M-derived low-level model.
+Replaces the official low-level checkpoint with an RP1M-derived low-level model.
 
-- baseline mean F1: `0.615026`
-- improved mean F1: `0.595610`
-- delta: `-0.019416`
+- mean F1: `0.595610`
+- delta F1: `-0.019416`
 
-It improves only `Hope_1` and degrades the other four selected clips.
+This method improves only `Hope_1` and degrades the other four clips.
 
-## Practical conclusion
+### `04_goal_representation`
 
-Among the currently compared methods for the five selected test clips, `01_smooth_diffusion_objective` remains the strongest average improvement. `04_goal_representation` is the second strongest average improvement and is especially helpful on `EyesClosed_1`. `official_reward_select_013` is a modest but still positive test-time improvement. The A+C recovery and RP1M low-level replacement are not effective on this five-clip benchmark slice.
+Fine-tunes the low-level diffusion policy with an expanded goal side-channel representation.
+
+- mean F1: `0.623506`
+- delta F1: `+0.008480`
+
+This is the second strongest average improvement and is especially helpful on `EyesClosed_1`.
+
+### `05_official_reward_select_013`
+
+Keeps the original PianoMime checkpoints but evaluates multiple low-level seeds and selects the best rollout by reward.
+
+- mean F1: `0.619582`
+- delta F1: `+0.004556`
+
+This method gives a modest positive test-time improvement, but still degrades `SomewhereOnlyWeKnow_1`.
+
+## Conclusion
+
+`01_smooth_diffusion_objective` is the best current multi-task improvement by average F1. `04_goal_representation` is also positive and close behind. The remaining methods are useful comparison points but are not stronger than these two on the selected five clips.
