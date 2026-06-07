@@ -1,41 +1,64 @@
 # Multi-task Improvement Summary
 
-`01_smooth_diffusion_objective` fine-tunes the low-level diffusion policy with denoised action derivative matching.
+All generalist-policy methods are evaluated on the same five unseen/test clips:
 
-On the five selected unseen/test clips, the baseline generalist mean F1 is `0.615026` and this method reaches `0.625574`, for a delta of `+0.010548`.
+```text
+Alone_1
+EyesClosed_1
+Hope_1
+SomewhereOnlyWeKnow_1
+NoTimeToDie_1
+```
 
-## Additional compared methods on the same five clips
+The baseline generalist mean F1 on these clips is `0.615026`.
 
-### `01_official_reward_select_013`
+## Compared Methods
 
-This method keeps the original PianoMime checkpoints but evaluates multiple low-level seeds and selects the best rollout by reward.
+### Smooth Diffusion Objective
 
-- baseline mean F1: `0.615026`
-- improved mean F1: `0.619582`
-- delta: `+0.004556`
+Fine-tunes the low-level diffusion policy with denoised action derivative matching.
 
-It improves 4 of the 5 selected clips, but still loses on `SomewhereOnlyWeKnow_1`.
+- mean F1: `0.625574`
+- delta F1: `+0.010548`
 
-### `02_ac_recover100_teacher0005_seed0`
+This is the strongest average improvement among the collected generalist-policy methods.
 
-This is the A+C two-stage recovery method with teacher regularization.
+### A+C Recovery
 
-- baseline mean F1: `0.615026`
-- improved mean F1: `0.609421`
-- delta: `-0.005605`
+Uses a two-stage recovery method with teacher regularization.
 
-It helps on some clips but is not a stable improvement on the selected five-song subset.
+- mean F1: `0.609421`
+- delta F1: `-0.005605`
 
-### `03_rp1m_pointmajor_linearq_seed3`
+This method is not a stable improvement on the selected five-clip benchmark.
 
-This method replaces the official low-level checkpoint with the RP1M-derived low-level model.
+### RP1M Low-level Replacement
 
-- baseline mean F1: `0.615026`
-- improved mean F1: `0.595610`
-- delta: `-0.019416`
+Replaces the official low-level checkpoint with an RP1M-derived low-level policy.
 
-It improves only `Hope_1` and degrades the other four selected clips.
+- mean F1: `0.595610`
+- delta F1: `-0.019416`
 
-## Practical conclusion
+This method improves only `Hope_1` and degrades the other four clips.
 
-Among the currently compared methods for the five selected test clips, `01_smooth_diffusion_objective` remains the strongest average improvement. `official_reward_select_013` is a modest but still positive test-time improvement. The A+C recovery and RP1M low-level replacement are not effective on this five-clip benchmark slice.
+### Goal Representation
+
+Fine-tunes the low-level diffusion policy with an expanded goal side-channel representation.
+
+- mean F1: `0.623506`
+- delta F1: `+0.008480`
+
+This is the second strongest average improvement and is especially helpful on `EyesClosed_1`.
+
+### Reward-based Rollout Selection
+
+Keeps the original PianoMime checkpoints but samples multiple rollouts and selects the best one by reward.
+
+- mean F1: `0.619582`
+- delta F1: `+0.004556`
+
+This method gives a modest positive test-time improvement, but still degrades `SomewhereOnlyWeKnow_1`.
+
+## Conclusion
+
+Smooth Diffusion Objective is the best current generalist-policy improvement by average F1. Goal Representation is also positive and close behind. A+C Recovery, RP1M Low-level Replacement, and Reward-based Rollout Selection are useful comparison points but are not stronger than these two on the selected five clips.

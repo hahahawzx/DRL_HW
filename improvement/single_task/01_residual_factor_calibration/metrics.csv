@@ -1,0 +1,2 @@
+song_or_clip,split,seed,method,precision,recall,f1,outcome,notes
+Happy_8,train,42,Residual factor calibration,0.814019,0.558166,0.573780,diagnostic,residual factor calibration improves the short PPO baseline slightly
