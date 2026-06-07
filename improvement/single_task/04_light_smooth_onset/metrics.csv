@@ -1,0 +1,2 @@
+song_or_clip,split,seed,method,precision,recall,f1,outcome,notes
+Happy_8,train,42,Light smoothness + onset reward,0.852604,0.567411,0.582861,intermediate,light smoothness plus onset reward improves over the short PPO baseline

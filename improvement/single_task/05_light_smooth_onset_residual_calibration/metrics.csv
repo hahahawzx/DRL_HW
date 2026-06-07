@@ -1,0 +1,2 @@
+song_or_clip,split,seed,method,precision,recall,f1,outcome,notes
+Happy_8,train,42,Light smoothness + onset reward + residual calibration,1.000000,0.889484,0.918715,final,final selected single-task method

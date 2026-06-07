@@ -1,7 +1,0 @@
-method,ckpt,residual_factor,precision,recall,f1,delta_action,qvel,qacc,residual_norm,notes
-Baseline PPO,happy8_baseline_8x256_i150_best,0.03,0.8174913194444443,0.5418650793650793,0.55953939000814,0.07477863588132258,3.2933507472610795,6.400829614631726,0.00031579214627501057,"original reward, training eval setting"
-Baseline + residual-factor calibration,happy8_baseline_8x256_i150_best,0.02,0.814019,0.558166,0.57378,0.07521342,,6.321222,0.000136964,best baseline inference sweep
-Continue original reward control,happy8_continue_ctrl_i80_best,0.03,0.83828125,0.5487227182539682,0.5704562364718614,,,6.4956,0.000317767,"same extra training budget, no new reward"
-Smooth v1 heavy penalties,happy8_smooth_ft_v1_i80_best,0.03,0.7986979166666667,0.5224888392857142,0.5430638227513228,,,,,"failed: smooth penalties too strong, recall dropped"
-Light smooth + onset,happy8_onset_lightsmooth_i60_best,0.02,0.8526041666666667,0.5674107142857142,0.5828611637205388,0.07449002,,6.145072,0.00018901,trained with onset and light smooth terms
-Light smooth + onset + residual-factor calibration,happy8_onset_lightsmooth_i60_best,0.0205,0.8674479166666668,0.5809957837301587,0.6082228535353535,0.07113272,,5.843359,0.00019679,"best final policy, repeated deterministic eval x3"
