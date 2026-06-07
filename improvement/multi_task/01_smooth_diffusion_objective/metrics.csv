@@ -1,0 +1,6 @@
+song_or_clip,split,seed,method,precision,recall,f1,notes
+Alone_1,test,42,Smooth diffusion objective,0.740056,0.627698,0.617477,low-level diffusion fine-tuned with denoised action derivative matching
+EyesClosed_1,test,43,Smooth diffusion objective,0.535806,0.447694,0.449389,low-level diffusion fine-tuned with denoised action derivative matching
+Hope_1,test,44,Smooth diffusion objective,0.733723,0.639006,0.656806,low-level diffusion fine-tuned with denoised action derivative matching
+SomewhereOnlyWeKnow_1,test,45,Smooth diffusion objective,0.686147,0.609000,0.617503,low-level diffusion fine-tuned with denoised action derivative matching
+NoTimeToDie_1,test,46,Smooth diffusion objective,0.809167,0.800833,0.786694,low-level diffusion fine-tuned with denoised action derivative matching

@@ -30,13 +30,11 @@ course_project_results/
 
   improvement/
     single_task/
-      00_baseline/
       01_method_name/
       02_method_name/
       combined_optimization/
 
     multi_task/
-      00_baseline/
       01_method_name/
       02_method_name/
       combined_optimization/
@@ -87,7 +85,6 @@ For `improvement/single_task/`, each method folder keeps only:
 
 For `improvement/multi_task/`:
 
-- `00_baseline/` stores the fixed baseline used for comparison.
 - `01_method_name/`, `02_method_name/`, etc. store individual optimization attempts.
 - `combined_optimization/` stores the final combined method, if applicable.
 - `summary.md` gives the human-readable conclusion.
@@ -102,7 +99,7 @@ final_video.mp4
 
 For single-task methods, the curve and video are the required reader-facing artifacts.
 
-For multi-task methods, all methods are evaluated on the same five unseen/test songs so that the baseline and improved F1 scores are directly comparable.
+For multi-task methods, all methods are evaluated on the same five unseen/test songs and compared against the baseline results stored under `baseline/multi_task/`.
 
 ## Table Format
 

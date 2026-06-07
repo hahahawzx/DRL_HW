@@ -1,0 +1,2 @@
+method,num_clips,precision,recall,f1,baseline_f1,delta_f1,notes
+Smooth diffusion objective,5,0.700979,0.624846,0.625574,0.615026,0.010548,improvement1: denoised action derivative matching

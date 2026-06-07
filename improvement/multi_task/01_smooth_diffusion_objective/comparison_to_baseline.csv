@@ -1,0 +1,6 @@
+song_or_clip,baseline_f1,improved_f1,delta_f1,notes
+Alone_1,0.606676,0.617477,0.010801,same selected test clip and seed as baseline evaluation
+EyesClosed_1,0.445271,0.449389,0.004118,same selected test clip and seed as baseline evaluation
+Hope_1,0.638330,0.656806,0.018476,same selected test clip and seed as baseline evaluation
+SomewhereOnlyWeKnow_1,0.608451,0.617503,0.009052,same selected test clip and seed as baseline evaluation
+NoTimeToDie_1,0.776401,0.786694,0.010293,same selected test clip and seed as baseline evaluation
