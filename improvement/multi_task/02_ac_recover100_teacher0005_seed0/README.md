@@ -1,4 +1,4 @@
-# 02 ac_recover100_teacher0005_seed0
+# A+C Recovery
 
 ## What changed
 
