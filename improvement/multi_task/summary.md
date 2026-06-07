@@ -51,7 +51,19 @@ The baseline generalist mean F1 on these five clips is `0.615026`.
 
 ### Smooth Diffusion Objective
 
-This is a low-level diffusion training modification. The motivation is that a diffusion action model may predict note-correct actions that are locally noisy or temporally inconsistent. We therefore add a smooth derivative-matching objective so the predicted clean action chunk follows smoother local action dynamics.
+This is a low-level diffusion training modification. The motivation is that a diffusion action model may predict note-correct actions that are locally noisy or temporally inconsistent. We keep the original noise-prediction loss, reconstruct the denoised clean action estimate `a_hat_0` from the predicted noise, and add trajectory supervision on low-noise timesteps.
+
+The implemented objective uses first-order delta matching, second-order jerk matching, a light absolute jerk penalty, and an `x0` anchor:
+
+```text
+L = L_noise
+  + 1e-2 * ||Delta a_hat_0 - Delta a_demo||_2^2
+  + 5e-3 * ||Delta^2 a_hat_0 - Delta^2 a_demo||_2^2
+  + 1e-3 * ||Delta^2 a_hat_0||_2^2
+  + 1e-3 * ||a_hat_0 - a_demo||_2^2
+```
+
+The extra terms are applied only for low-noise diffusion timesteps (`t <= 30`) with linear low-noise weighting. This is different from test-time low-pass smoothing, which was tested separately and reduced F1 by delaying or suppressing contact timing.
 
 Result on the five-clip benchmark:
 
@@ -105,7 +117,7 @@ Reader-facing five-clip result in this folder:
 
 This method is therefore useful evidence for the RP1M integration idea, but it is not stable on the selected five-clip benchmark.
 
-### A+C Recovery with Teacher Regularization
+### RP1M Recovery with Teacher Regularization
 
 This is a trained low-level recovery method. It starts from the RP1M-derived low-level model, then recovers on original PianoMime low-level data while regularizing the student against the frozen official low-level teacher.
 

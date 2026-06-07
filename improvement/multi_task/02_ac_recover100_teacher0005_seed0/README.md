@@ -1,4 +1,4 @@
-# A+C Recovery with Teacher Regularization
+# RP1M Recovery with Teacher Regularization
 
 ## What changed
 
@@ -58,4 +58,4 @@ recover100 without teacher, seed1 F1 = 0.6518
 
 ## Conclusion
 
-Teacher regularization is useful, but the current A+C recovery is not a stable five-clip improvement. It should be reported as a meaningful training attempt and diagnostic result, not as the final strongest generalist method.
+Teacher regularization is useful, but the current RP1M recovery setting is not a stable five-clip improvement. It should be reported as a meaningful training attempt and diagnostic result, not as the final strongest generalist method.

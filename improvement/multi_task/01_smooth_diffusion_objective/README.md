@@ -2,18 +2,37 @@
 
 ## What changed
 
-This method fine-tunes the low-level diffusion policy from the original PianoMime checkpoint with an additional smoothness objective on the denoised action trajectory.
+This method fine-tunes the low-level diffusion policy from the original PianoMime checkpoint with an additional denoised-trajectory objective. It modifies the training loss only; it is not a high-level policy change, inference sampler change, or rollout post-processing method.
 
-The baseline low-level diffusion loss predicts denoising noise. We add a derivative-matching term so the predicted clean action chunk has smoother local dynamics:
+The baseline low-level diffusion loss predicts denoising noise. For each noisy action chunk, we reconstruct the clean action estimate from the predicted noise:
 
 ```text
-L = L_diff + beta * L_smooth
-L_smooth compares action differences between predicted actions and demonstration actions
+a_hat_0 = (a_noisy - sqrt(1 - alpha_t) * epsilon_pred) / sqrt(alpha_t)
 ```
+
+The extra objective is applied only on low-noise timesteps, where `a_hat_0` is close enough to the final denoised action to make trajectory supervision meaningful. The implementation uses `smooth_timestep_max = 30` with linear low-noise weighting.
+
+The reported training loss is:
+
+```text
+L =
+  L_noise
+  + 1e-2 * L_delta
+  + 5e-3 * L_jerk
+  + 1e-3 * L_abs_jerk
+  + 1e-3 * L_x0
+
+L_delta    = ||Delta a_hat_0 - Delta a_demo||_2^2
+L_jerk     = ||Delta^2 a_hat_0 - Delta^2 a_demo||_2^2
+L_abs_jerk = ||Delta^2 a_hat_0||_2^2
+L_x0       = ||a_hat_0 - a_demo||_2^2
+```
+
+Actions are split into left-hand and right-hand groups when computing the trajectory terms. The current run uses uniform action weights.
 
 ## Motivation
 
-The generalist policy must play unseen clips with accurate timing while keeping hand actions temporally coherent. A note sequence can be mostly correct while the low-level action trajectory still contains abrupt changes. The smooth diffusion objective is intended to reduce these local action inconsistencies without applying a hard test-time low-pass filter.
+The generalist policy must play unseen clips with accurate timing while keeping hand actions temporally coherent. A note sequence can be mostly correct while the low-level action trajectory still contains abrupt changes. The smooth diffusion objective is intended to make denoised action chunks follow the demonstration's local motion pattern.
 
 This is different from simple action smoothing: direct low-pass smoothing was tested separately and reduced F1 because it delayed contact timing.
 
