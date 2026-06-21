@@ -1,68 +1,41 @@
 # Dexterous Piano Course Project Results
 
-This folder contains the experimental results for our Dexterous Piano course project. The experiments are based on PianoMime and cover both single-song policies and multi-song generalist policies.
+This repository contains the report and selected artifacts for our Dexterous Piano course project based on PianoMime. The project covers baseline reproduction, single-song specialist improvement, and multi-song generalist improvement.
 
-The results are grouped into two parts:
-
-- `baseline`: reproduction of the original PianoMime setting.
-- `improvement`: evaluation of our optimization attempts against the corresponding baseline.
-
-## Structure
+## Top-level Files
 
 ```text
-course_project_results/
-  README.md
-
+DRL_HW/
   baseline/
-    single_task/
-      song_name/
-        training_curve_f1.png
-        final_video.mp4
-
-    multi_task/
-      baseline_generalist/
-        README.md
-        metrics.csv
-        figures/
-        videos/
-        run_config.md
-      summary.csv
-
-  improvement/
-    single_task/
-      01_method_name/
-      02_method_name/
-      combined_optimization/
-
-    multi_task/
-      01_method_name/
-      02_method_name/
-      combined_optimization/
-      summary.md
-      summary.csv
+  Milestone_improvement/
+  Final_improvement/
 ```
+
+- `baseline/`: reproduced PianoMime baseline results.
+- `Milestone_improvement/`: full intermediate improvement records, metrics, method notes, and diagnostic summaries.
+- `Final_improvement/`: final reader-facing videos selected for submission or presentation.
 
 ## Baseline Results
 
-`baseline/single_task/` contains the original PianoMime single-song policy results for three training clips. Each clip folder keeps only the F1 training curve and the final performance video.
+`baseline/` stores the reproduced PianoMime behavior.
 
-`baseline/multi_task/` contains the original PianoMime generalist policy results on unseen/test songs, including per-song metrics and selected videos.
-
-## Selected Clips
-
-All selected pieces are clips rather than full songs.
-
-Single-task baseline clips from `dataset/notes/`:
+Single-task specialist baseline clips:
 
 ```text
-Happy_8
-ImagineDragons_6
-LetMeDownSlowly_6
+baseline/single_task/Happy_8/final_video.mp4
+baseline/single_task/ImagineDragons_6/imaginedragons.mp4
+baseline/single_task/LetMeDownSlowly_6/letmeslowdown.mp4
 ```
 
-`Happy_8` is relatively difficult and is also used as the fixed single-task comparison clip for later improvements.
+Reproduced single-task F1:
 
-Multi-task/generalist evaluation clips from `dataset/notes_test/`:
+| Clip | F1 |
+|---|---:|
+| `Happy_8` | `0.8724` |
+| `ImagineDragons_6` | `0.9158` |
+| `LetMeDownSlowly_6` | `0.9289` |
+
+Multi-task/generalist baseline clips:
 
 ```text
 Alone_1
@@ -72,72 +45,89 @@ SomewhereOnlyWeKnow_1
 NoTimeToDie_1
 ```
 
-The same five test clips are used for the baseline generalist policy and all multi-task/generalist improvements.
+The five-clip generalist baseline mean F1 is `0.6150`.
 
-## Improvement Results
+## Milestone Improvement Results
 
-The improvement section is organized by method rather than by song.
+`Milestone_improvement/` keeps the detailed experiment records.
 
-For `improvement/single_task/`, each method folder keeps only:
-
-- `training_curve_f1.png`
-- `final_video.mp4`
-
-For `improvement/multi_task/`:
-
-- `01_method_name/`, `02_method_name/`, etc. store individual optimization attempts.
-- `combined_optimization/` stores the final combined method, if applicable.
-- `summary.md` gives the human-readable conclusion.
-- `summary.csv` gives the compact quantitative comparison.
-
-Single-task baseline and improvement folders use the following compact format:
+Important files:
 
 ```text
-training_curve_f1.png
-final_video.mp4
+Milestone_improvement/single_task/summary.md
+Milestone_improvement/single_task/summary.csv
+Milestone_improvement/multi_task/summary.md
+Milestone_improvement/multi_task/summary.csv
 ```
 
-For single-task methods, the curve and video are the required reader-facing artifacts.
-
-For multi-task methods, all methods are evaluated on the same five unseen/test songs and compared against the baseline results stored under `baseline/multi_task/`.
-
-## Table Format
-
-Multi-task `metrics.csv` contains raw evaluation results:
+The final single-task specialist improvement is:
 
 ```text
-song_or_clip, split, seed, method, precision, recall, f1, notes
+Method: onset-aware reward + light smoothness regularization + residual factor calibration
+Clip: Happy_8
+F1: 0.8725 -> 0.9187
+Delta F1: +0.0463
 ```
 
-Multi-task `comparison_to_baseline.csv` contains baseline-vs-method results:
+The main positive multi-task/generalist results are:
+
+| Method | Mean F1 | Baseline F1 | Delta F1 |
+|---|---:|---:|---:|
+| Motion-weighted low-level diffusion fine-tune, `alpha = 3` | `0.6258` | `0.6150` | `+0.0108` |
+| Smooth diffusion objective | `0.6256` | `0.6150` | `+0.0105` |
+| Goal side-channel representation | `0.6235` | `0.6150` | `+0.0085` |
+| Reward-based rollout selection | `0.6196` | `0.6150` | `+0.0046` |
+
+RP1M-related methods are kept as diagnostic results because their five-clip averages are below the baseline, even though some single-clip diagnostics are positive after representation alignment and teacher recovery.
+
+## Final Improvement Videos
+
+`Final_improvement/` is the compact final video folder.
+
+Current structure:
 
 ```text
-song_or_clip,
-baseline_f1,
-improved_f1,
-delta_f1,
-notes
+Final_improvement/
+  single_task/
+    Happy_8.mp4
+    ImagineDragons_6.mp4
+    LetMeDownSlowly_6.mp4
+
+  multi_task/
+    Alone_1_motion_a3.mp4
+    EyesClosed_1_motion_a3.mp4
+    Hope_1_motion_a3.mp4
+    NoTimeToDie_1_motion_a3.mp4
+    SomewhereOnlyWeKnow_1_motion_a3.mp4
 ```
 
-## File Types
+`Final_improvement/single_task/Happy_8.mp4` is intended to show the final single-task specialist improvement:
 
-The result folders mainly contain:
+```text
+onset-aware reward + light smoothness regularization + residual factor calibration
+```
 
-- F1 training curves and final performance videos for single-task policies.
-- CSV tables for Precision, Recall, and F1 in multi-task/generalist experiments.
-- Figures for multi-task method comparisons.
-- MP4 videos for qualitative performance comparison.
-- Short notes describing the multi-task method, evaluation setting, and selected checkpoint.
+The `*_motion_a3.mp4` files show the final multi-task/generalist videos using:
 
-## Method README
+```text
+motion-weighted low-level diffusion fine-tune, alpha = 3
+```
 
-Multi-task optimization folders may use a single `README.md` to describe the method. It should explain:
+In the report, this is the strongest average generalist setting in the five-clip comparison:
 
-- What the method changes compared with the baseline.
-- Why this change may improve the policy.
-- Which setting it is evaluated on: single-task or multi-task/generalist.
-- Which songs or clips are used.
-- The main quantitative result.
-- The final conclusion for this method.
+```text
+baseline mean F1 = 0.6150
+motion_a3 mean F1 = 0.6258
+delta F1 = +0.0108
+```
 
-`run_config.md` is only used when compact reproducibility details are needed, such as seed, checkpoint name, and evaluation command.
+Per-clip F1 for `motion_a3`:
+
+| Clip | F1 |
+|---|---:|
+| `Alone_1` | `0.625` |
+| `EyesClosed_1` | `0.478` |
+| `Hope_1` | `0.667` |
+| `SomewhereOnlyWeKnow_1` | `0.571` |
+| `NoTimeToDie_1` | `0.789` |
+
