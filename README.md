@@ -6,14 +6,18 @@ This repository contains the report and selected artifacts for our Dexterous Pia
 
 ```text
 DRL_HW/
+  Final_Report.pdf
+  README.md
+
   baseline/
   Milestone_improvement/
   Final_improvement/
 ```
 
+- `Final_Report.pdf`: final report.
 - `baseline/`: reproduced PianoMime baseline results.
 - `Milestone_improvement/`: full intermediate improvement records, metrics, method notes, and diagnostic summaries.
-- `Final_improvement/`: final reader-facing videos selected for submission or presentation.
+- `Final_improvement/`: final reader-facing videos.
 
 ## Baseline Results
 
@@ -31,7 +35,7 @@ Reproduced single-task F1:
 
 | Clip | F1 |
 |---|---:|
-| `Happy_8` | `0.8724` |
+| `Happy_8` | `0.8725` |
 | `ImagineDragons_6` | `0.9158` |
 | `LetMeDownSlowly_6` | `0.9289` |
 
@@ -46,6 +50,8 @@ NoTimeToDie_1
 ```
 
 The five-clip generalist baseline mean F1 is `0.6150`.
+
+Precision, recall, and F1 values are reported from the evaluator summaries. Mean F1 is not recomputed from the displayed mean precision and mean recall.
 
 ## Milestone Improvement Results
 
@@ -65,8 +71,8 @@ The final single-task specialist improvement is:
 ```text
 Method: onset-aware reward + light smoothness regularization + residual factor calibration
 Clip: Happy_8
-F1: 0.8725 -> 0.9187
-Delta F1: +0.0463
+F1: 0.8725 -> 0.9192
+Delta F1: +0.0467
 ```
 
 The main positive multi-task/generalist results are:
@@ -88,6 +94,8 @@ Current structure:
 
 ```text
 Final_improvement/
+  With_arm.mp4
+
   single_task/
     Happy_8.mp4
     ImagineDragons_6.mp4
@@ -106,6 +114,8 @@ Final_improvement/
 ```text
 onset-aware reward + light smoothness regularization + residual factor calibration
 ```
+
+`Final_improvement/single_task/ImagineDragons_6.mp4` and `Final_improvement/single_task/LetMeDownSlowly_6.mp4` are kept as qualitative single-task reproduction/reference videos. The reported final single-task improvement is on `Happy_8`.
 
 The `*_motion_a3.mp4` files show the final multi-task/generalist videos using:
 
@@ -131,3 +141,4 @@ Per-clip F1 for `motion_a3`:
 | `SomewhereOnlyWeKnow_1` | `0.571` |
 | `NoTimeToDie_1` | `0.789` |
 
+`Final_improvement/With_arm.mp4` is the course bonus qualitative video for the arm-mounted Shadow Hand setup. It corresponds to the `Arm-Mounted Shadow Hands` section in the final report: two UR10-style arms carry the Shadow Hands, and the policy is produced through reference-based retargeting, action-sequence optimization, and BC/DAgger-style distillation. The reported no-clamp arm-mounted result is `Happy_8` F1 `0.8073` with precision `0.7309` and recall `0.9016`. This video should be interpreted as the bonus arm embodiment demo, not as one of the five `motion_a3` generalist benchmark videos.

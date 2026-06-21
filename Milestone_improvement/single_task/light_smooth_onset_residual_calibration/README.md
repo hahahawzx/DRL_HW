@@ -19,8 +19,8 @@ This is the only retained single-task improvement. It combines three changes:
 ```text
 precision = 1.000000
 recall    = 0.889484
-f1        = 0.918715
-delta_f1  = +0.046265
+f1        = 0.919200
+delta_f1  = +0.046700
 ```
 
-The final single-task F1 is `0.9187`. It improves over the released `Happy_8` single-song rollout baseline while keeping precision at `1.000000`.
+The final single-task F1 is `0.9192`. It improves over the released `Happy_8` single-song rollout baseline while keeping precision at `1.000000`.

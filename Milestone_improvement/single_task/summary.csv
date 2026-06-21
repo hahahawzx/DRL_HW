@@ -1,2 +1,2 @@
 method,song_or_clip,precision,recall,f1,baseline_f1,delta_f1,outcome,notes
-light_smooth_onset_residual_calibration,Happy_8,1.000000,0.889484,0.918715,0.872450,0.046265,final,"combined single-task improvement: onset-aware reward, light smoothness regularization, and residual factor calibration"
+light_smooth_onset_residual_calibration,Happy_8,1.000000,0.889484,0.919200,0.872500,0.046700,final,"combined single-task improvement: onset-aware reward, light smoothness regularization, and residual factor calibration"

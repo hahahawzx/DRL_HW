@@ -49,6 +49,17 @@ The baseline generalist mean F1 on these five clips is `0.615026`.
 
 ## Compared Methods
 
+### Motion-weighted Low-level Diffusion Fine-tune
+
+This is the final reader-facing generalist setting. The low-level diffusion policy is fine-tuned with motion weighting, and the selected sweep point is `alpha = 3`.
+
+Result on the five-clip benchmark:
+
+- mean F1: `0.625800`
+- delta F1: `+0.010774`
+
+This is the strongest average improvement in the merged five-clip comparison and is the source of the `Final_improvement/multi_task/*_motion_a3.mp4` videos.
+
 ### Smooth Diffusion Objective
 
 This is a low-level diffusion training modification. The motivation is that a diffusion action model may predict note-correct actions that are locally noisy or temporally inconsistent. We keep the original noise-prediction loss, reconstruct the denoised clean action estimate `a_hat_0` from the predicted noise, and add trajectory supervision on low-noise timesteps.
@@ -70,7 +81,7 @@ Result on the five-clip benchmark:
 - mean F1: `0.625574`
 - delta F1: `+0.010548`
 
-This is the strongest average improvement in the current five-clip reader-facing comparison.
+This is a close positive comparison result and is slightly below the final `motion_a3` setting in the merged five-clip comparison.
 
 ### Goal Side-channel Representation
 
@@ -152,5 +163,6 @@ This method is a meaningful training attempt, but it is not a stable improvement
 Use three claims in the final report:
 
 1. Baseline reproduction: the official two-stage PianoMime generalist can be reproduced on unseen songs.
-2. Generative inference: stochastic diffusion sampling enables best-of-N / reward-selected inference gains without training a new model.
-3. RP1M integration: learned representation alignment makes RP1M useful on `Forester_1`, but broader five-clip generalization remains unstable.
+2. Motion-weighted low-level diffusion fine-tuning with `alpha = 3` gives the strongest five-clip mean F1 among the merged reader-facing generalist results.
+3. Generative inference: stochastic diffusion sampling enables best-of-N / reward-selected inference gains without training a new model.
+4. RP1M integration: learned representation alignment makes RP1M useful on `Forester_1`, but broader five-clip generalization remains unstable.

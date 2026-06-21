@@ -14,6 +14,6 @@ The final method combines three changes:
 
 | Clip | Precision | Recall | F1 | Baseline F1 | Delta F1 |
 |---|---:|---:|---:|---:|---:|
-| `Happy_8` | `1.000000` | `0.889484` | `0.918715` | `0.872450` | `+0.046265` |
+| `Happy_8` | `1.000000` | `0.889484` | `0.919200` | `0.872500` | `+0.046700` |
 
-The final single-task F1 is `0.9187`.
+The final single-task F1 is `0.9192`.
